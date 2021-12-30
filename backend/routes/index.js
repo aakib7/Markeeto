@@ -114,16 +114,16 @@ router.get('/:id', async function(req, res, next) {
 
 
 
-router.post("/",validateMobile ,async function (req, res, next) {
-    let mobile = new Mobile(req.body);
-    await mobile.save();
-    res.send(mobile);
-});
-router.post("/accessory",validateAccessories ,async function (req, res, next) {
-    let accessory = new Accessory(req.body);
-    await accessory.save();
-    res.send(accessory);
-});
+// router.post("/",validateMobile ,async function (req, res, next) {
+//     let mobile = new Mobile(req.body);
+//     await mobile.save();
+//     res.send(mobile);
+// });
+// router.post("/accessory",validateAccessories ,async function (req, res, next) {
+//     let accessory = new Accessory(req.body);
+//     await accessory.save();
+//     res.send(accessory);
+// });
 // Register 
 router.post('/register',validateReg, async(req,res) => {
    let user = await User.findOne({ email:req.body.email });

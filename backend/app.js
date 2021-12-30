@@ -10,6 +10,7 @@ const mongoURI = "mongodb://127.0.0.1:27017/sessions";
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var apiRouter = require('./routes/mobiles/api/main');
 
 var app = express();
 const store = new mongodbSession({
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/mobiles/api/', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
