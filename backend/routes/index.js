@@ -57,9 +57,40 @@ router.get("/logout", async (req, res) => {
   return res.redirect("/login");
 });
 
-router.get('cart',async function(req, res, next){
-  res.send("Hello cart");
+router.get('/cart',async function(req, res, next){
+  let cart = req.cookies.cart;
+  if (!cart) cart = [];
+  let mobile = await Mobile.find({ _id: { $in: cart } });
+  let accessory = await Accessory.find({ _id: { $in: cart } });
+
+  let total = mobile.reduce(
+    (total, mobile) => total + Number(mobile.price),
+    0
+  );
+  let total1 = accessory.reduce(
+    (total1, accessory) => total1 + Number(accessory.price),
+    0
+  );
+  const t = total+total1;
+
+  res.render("cart", {
+  title:"Cart",
+  totals:t,
+  mobiles: mobile,
+  accessories: accessory,
+  isAuth:req.session.user });
 });
+router.get("/cart/:id", function (req, res, next) {
+  // console.log("id card");
+  let cart = req.cookies.cart;
+  // console.log(cart);
+  if (!cart) cart = [];
+  cart.push(req.params.id);
+  res.cookie("cart", cart);
+  // console.log("here");
+  res.redirect("/");
+});
+  
 router.get('/:id', async function(req, res, next) {
   let mobile = await Mobile.findById(req.params.id);
   let accessory = await Accessory.findById(req.params.id);
