@@ -47,7 +47,9 @@ isAuth:req.session.user})
 router.get('/profile',isAuth, async function(req, res, next) {
   res.render("profile",{title: 'profile',
    user:req.session.user,
-  isAuth:req.session.user})
+  isAuth:req.session.user,
+  isAdmin:req.session.user.role == 'admin'
+})
 });
 router.get("/logout", async (req, res) => {
   req.session.user = null;
