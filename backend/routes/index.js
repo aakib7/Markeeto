@@ -6,22 +6,22 @@ const validateMobile = require("../middlewares/validateMobile");
 const validateAccessories = require("../middlewares/validateAccessory");
 const validateReg = require("../middlewares/validateRegister");
 const validateLogIn = require("../middlewares/validateLog");
-const isAuth = require("../middlewares/isAuth")
+const admin = require("../middlewares/admin");
+const isAuth = require("../middlewares/isAuth");
 const {User} = require("../models/User");
 const bcrypt = require("bcryptjs");
+
 
 /* GET home page. */
 
 router.get('/', async function(req, res, next) {
   let mobile = await Mobile.find();
-  let accessory = await Accessory.find();
+  // let accessory = await Accessory.find();
   res.render('index',{layout:"layout",
               title: 'Products',
               mobiles: mobile,
-              accessories:accessory,
               isAuth:req.session.user
             });
-
 });
 router.get('/accessory', async function(req, res, next) {
   let accessory = await Accessory.find();
@@ -64,6 +64,7 @@ router.get('/:id', async function(req, res, next) {
     res.render('detailsMobile',{layout:"layout",
               title: 'Details',
               mobiles: mobile,
+              isAuth:req.session.user
             });
   }
   else{
@@ -71,11 +72,47 @@ router.get('/:id', async function(req, res, next) {
     res.render('detailsAccessory',{layout:"layout",
               title: 'Details',
               accessory: accessory,
+              isAuth:req.session.user
             });
   }
 });
 
 
+// router.put('/:id', isAuth, admin, validateMobile ,async (req,res)=>{
+router.put('/:id',validateMobile ,async (req,res)=>{
+  try{
+    let mobile = await Mobile.findById(req.params.id);
+    if(!mobile) {
+      return res.status(400).res.send("Mobile with given id not present")
+    }
+    mobile.company = req.body.company;
+    mobile.model = req.body.model;
+    mobile.color = req.body.color;
+    mobile.price = req.body.price;
+    mobile.ram = req.body.ram;
+    mobile.rom = req.body.rom;
+    mobile.description = req.body.description;
+    mobile.category = req.body.category;
+    await mobile.save();
+    return res.send(mobile);
+  }
+  catch (err) {
+    return res.status(400).send("Invalid ID");
+  }
+});
+
+// router.delete("/:id",isAuth, admin, async function (req, res, next) {
+router.delete("/:id", async function (req, res, next) {
+  try {
+    let mobile = await Mobile.findByIdAndDelete(req.params.id);
+    if(!mobile) {
+      return res.status(400).res.send("Mobile with given id not present")
+    }
+    return res.send("delete");
+  } catch (err) {
+    return res.status(400).send("Invalid ID");
+  }
+});
 
 router.post("/",validateMobile ,async function (req, res, next) {
     let mobile = new Mobile(req.body);
