@@ -56,6 +56,10 @@ router.get("/logout", async (req, res) => {
   console.log("session clear");
   return res.redirect("/login");
 });
+
+router.get('cart',async function(req, res, next){
+  res.send("Hello cart");
+});
 router.get('/:id', async function(req, res, next) {
   let mobile = await Mobile.findById(req.params.id);
   let accessory = await Accessory.findById(req.params.id);
@@ -64,6 +68,7 @@ router.get('/:id', async function(req, res, next) {
     res.render('detailsMobile',{layout:"layout",
               title: 'Details',
               mobiles: mobile,
+              isAuth:req.session.user
             });
   }
   else{
@@ -71,6 +76,7 @@ router.get('/:id', async function(req, res, next) {
     res.render('detailsAccessory',{layout:"layout",
               title: 'Details',
               accessory: accessory,
+              isAuth:req.session.user
             });
   }
 });
