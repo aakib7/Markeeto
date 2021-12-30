@@ -1,0 +1,81 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.container {
+  width: 80%;
+}
+div .image {
+  width: 85%;
+  height: 140px;
+  background-color: antiquewhite;
+}
+.model {
+  font-size: 22px;
+  color: blue;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.company {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.mb {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+.butn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 15px;
+  background-color: red;
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+}
+a {
+  text-decoration: none;
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 3px;
+  background-color: DarkSalmon;
+  color: white;
+}
+.large-image {
+  margin-top:30px;
+  margin-bottom:30px;
+  width: 450px;
+  height: 350px;
+  background-color: antiquewhite;
+}
+
+.login-form {
+        width: 400px;
+        height: 400px;
+        margin: 1rem auto;
+      }
+      .input-group {
+        width: 100%;
+      }
+      .input-group label {
+        display: block;
+      }
+      .input-group input {
+        width: 100%;
+      }
+      button {
+        padding: 10px 17px;
+        margin-top: 1rem;
+        font-size: 1rem;
+        background: #eee;
+        border: 1px solid #333;
+        cursor: pointer;
+      }

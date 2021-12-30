@@ -1,0 +1,25 @@
+<body>
+    <div class="container">
+
+    </div>
+  <h1><%=title %></h1>
+  <% for(var i=0;i<accessories.length;i++) {%>
+    <div class="row">
+      <div class="col-sm">
+        <div class="image"></div>
+        <h1 class="model">
+            <a href="/<%=accessories[i]._id %>">
+                Name: <%=accessories[i].name %>
+            </a>
+        </h1>
+        <h2 class="company">Company: <%=accessories[i].company %></h2>
+        <h3 class="color mb">Color: <%=accessories[i].color %></h3>
+        <h3 class="Price mb">Price: <%=accessories[i].price %> PKR</h3>
+        <a href="/add-cart/<%=accessories[0]._id %>" class="butn">Add to cart</a>
+        
+      </div>
+    </div>
+
+      <% } %>
+</mobiles.length;i++)>  
+</body>
