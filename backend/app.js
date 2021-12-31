@@ -7,6 +7,7 @@ var expressLayouts = require("express-ejs-layouts");
 const session = require('express-session');
 const mongodbSession = require('connect-mongodb-session')(session);
 const mongoURI = "mongodb://127.0.0.1:27017/sessions";
+const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -30,6 +31,7 @@ app.use(session({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
