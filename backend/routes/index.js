@@ -142,25 +142,25 @@ router.post('/login',validateLogIn, async(req, res)=>{
     
 });
 
-router.get('/:id', async function(req, res, next) {
-  let mobile = await Mobile.findById(req.params.id);
-  let accessory = await Accessory.findById(req.params.id);
-  if(mobile){
-    // return res.send(mobile);
-    res.render('detailsMobile',{layout:"layout",
-              title: 'Details',
-              mobiles: mobile,
-              isAuth:req.session.user
-            });
-  }
-  else{
-    // return res.send(accessory);
-    res.render('detailsAccessory',{layout:"layout",
-              title: 'Details',
-              accessory: accessory,
-              isAuth:req.session.user
-            });
-  }
-});
+// router.get('/:id', async function(req, res, next) {
+//   let mobile = await Mobile.findById(req.params.id);
+//   let accessory = await Accessory.findById(req.params.id);
+//   if(mobile){
+//     // return res.send(mobile);
+//     res.render('detailsMobile',{layout:"layout",
+//               title: 'Details',
+//               mobiles: mobile,
+//               isAuth:req.session.user
+//             });
+//   }
+//   else{
+//     // return res.send(accessory);
+//     res.render('detailsAccessory',{layout:"layout",
+//               title: 'Details',
+//               accessory: accessory,
+//               isAuth:req.session.user
+//             });
+//   }
+// });
 
 module.exports = router;
