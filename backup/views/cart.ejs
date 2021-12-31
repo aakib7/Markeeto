@@ -1,0 +1,32 @@
+<body>
+  <a href="/" class="btn btn-info">Continue Shopping</a>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Product Price</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        <% for(var i=0;i<mobiles.length;i++) {let mobile = mobiles[i];%>
+            <tr>
+                <td><%=mobile.model  %> </td>
+                <td><%=mobile.price  %> </td>
+            </tr>
+            <% } %> 
+        <% for(var i=0;i<accessories.length;i++) {let accessory = accessories[i];%>
+            <tr>
+                <td><%=accessory.name  %> </td>
+                <td><%=accessory.price  %> </td>
+            </tr>
+            <% } %> 
+            <tfoot>
+                <tr>
+                    <td>Total:</td>
+                    <td><%=totals  %> </td>
+                </tr>
+            </tfoot>
+    </tbody>
+</table>
+</body>
